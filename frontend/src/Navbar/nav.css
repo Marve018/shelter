@@ -1,0 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  background-color: white;
+  color: #333;
+  height: 60px;
+  padding-left: 0px;
+}
+.shelter-logo {
+  width: 50%;
+}

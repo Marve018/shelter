@@ -1,12 +1,13 @@
 import React from "react";
 import logo from "../Images/logo-img.jpeg";
+import "./nav.css";
 
 export default function Nav() {
   return (
     <nav>
       <div className="nav-wrapper">
-        <a href={logo} className="brand-logo">
-          <img src={logo} alt="logo" />
+        <a href={logo}>
+          <img src={logo} alt="logo" className="shelter-logo" />
         </a>
         <h1>YOUR PLACE OF SHELTER</h1>
         <div className="nav-links">
