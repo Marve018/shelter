@@ -9,6 +9,12 @@ const port = process.env.PORT || 3000;
 
 connectDB();
 
+// middleware
+app.use(express.json({ extended: false }));
+
+// routes
+app.use('/api/auth', require('./routes/api/auth'));
+
 app.get('/', (req, res) => {
     res.send('Welcome to Shelter!');
     });
