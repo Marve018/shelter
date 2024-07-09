@@ -1,26 +1,43 @@
 import React from "react";
 import logo from "../Images/logo-img.jpeg";
 import "./nav.css";
+import { useState } from "react";
 
 export default function Nav() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
     <nav>
       <div className="nav-wrapper">
         <a href={logo}>
           <img src={logo} alt="logo" className="shelter-logo" />
         </a>
-        <h1>YOUR PLACE OF SHELTER</h1>
-        <div className="nav-links">
+        <div className="menu-toggle" id="mobile-menu" onClick={toggleMenu}>
+          &#9776;
+        </div>
+        <ul className={`nav-links ${isMenuOpen ? "show" : ""}`}>
+          <li>
+            <a href="/HOME">HOME</a>
+          </li>
+          <li>
+            <a href="/BUY">BUY</a>
+          </li>
+          <li>
+            <a href="/SELL">SELL</a>
+          </li>
+          <li>
+            <a href="/ABOUT">ABOUT US</a>
+          </li>
+          <li>
+            <a href="/CONTACT">CONTACT US</a>
+          </li>
           <li>
             <a href="/LOGIN">LOGIN</a>
           </li>
-          <li>
-            <a href="/SIGNUP">SIGN-UP</a>
-          </li>
-          <li>
-            <a href="/VIEW">VIEW PROPERTY</a>
-          </li>
-        </div>
+        </ul>
       </div>
     </nav>
   );
