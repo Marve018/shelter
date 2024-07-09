@@ -14,6 +14,8 @@ app.use(express.json({ extended: false }));
 
 // routes
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/uploads', require('./routes/api/uploads'));
+
 
 app.get('/', (req, res) => {
     res.send('Welcome to Shelter!');
