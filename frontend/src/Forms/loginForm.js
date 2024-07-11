@@ -22,20 +22,20 @@ const LoginForm = () => {
       <div className="form-container">
         <form onSubmit={handleSubmit} className="form">
           <div>
-            <label>Email:</label>
             <input
               type="email"
               name="email"
+              placeholder="Email"
               value={formData.email}
               onChange={handleChange}
               className="form--input"
             />
           </div>
           <div>
-            <label>Password:</label>
             <input
               type="password"
               name="password"
+              placeholder="Password"
               value={formData.password}
               onChange={handleChange}
               className="form--input"
