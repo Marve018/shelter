@@ -3,6 +3,8 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 const Property = require('../../models/property');
+const User = require('../../models/user');
+const Booking = require('../../models/booking');
 
 // Define a route for creating a new property
 router.post('/property', [auth, checkRole(['admin'])], [
@@ -164,6 +166,17 @@ router.get('/properties', auth, async (req, res) => {
         res.json(properties);
     } catch (err) {
         // Log the error and send a 500 response if an error occurs
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// get all bookings for owner properties
+router.get('/bookings', [auth, checkRole(['admin'])], async (req, res) => {
+    try {
+        const bookings = await Booking.find({ owner: req.user.id }).populate('property', ['title', 'address']);
+        res.json(bookings);
+    } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
