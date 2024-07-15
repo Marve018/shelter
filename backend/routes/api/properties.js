@@ -5,7 +5,7 @@ const auth = require('../../middleware/auth');
 const Property = require('../../models/property');
 
 // Define a route for creating a new property
-router.post('/property', auth, [
+router.post('/property', [auth, checkRole(['admin'])], [
     check('title', 'Title is required').not().isEmpty(),
     check('description', 'Description is required').not().isEmpty(),
     check('price', 'Price is required').not().isEmpty(),
@@ -72,7 +72,7 @@ router.get('/property/:id', async (req, res) => {
 });
 
 // Define a route for deleting a property by ID
-router.delete('/property/:id', auth, async (req, res) => {
+router.delete('/property/:id', [auth, checkRole(['admin'])], async (req, res) => {
     try {
         const property = await Property.findById(req.params.id);
         if (!property) {
@@ -93,7 +93,7 @@ router.delete('/property/:id', auth, async (req, res) => {
 });
 
 // Define a route for updating a property by ID
-router.put('/property/:id', auth, async (req, res) => {
+router.put('/property/:id', [auth, checkRole(['admin'])], async (req, res) => {
     const { title, description, price, address, country, state, city, imageUrl } = req.body;
 
     // Create a new property object

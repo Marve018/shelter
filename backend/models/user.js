@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
 
-	userName: {
+	username: {
 		type: String,
 		required: true
 	},
@@ -21,6 +21,8 @@ const userSchema = new mongoose.Schema({
 
 	role: {
 		type: String,
+        enum: ['user', 'admin'],
+        default: 'user',
 		required: true
 	},
 
@@ -39,11 +41,13 @@ const userSchema = new mongoose.Schema({
 		default: Date.now
 	},
 
-	updattedAt: {
+	updatedAt: {
 		type: Date,
 		default: Date.now
 	}
 
 });
 
-const User = mongoose.model('User', 'userSchema');
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
