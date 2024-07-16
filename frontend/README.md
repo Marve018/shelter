@@ -28,4 +28,3 @@ This is a web application designed for real estate purposes called Shelter. It a
 This project is licensed under the ....
 
 ## Contact
-
