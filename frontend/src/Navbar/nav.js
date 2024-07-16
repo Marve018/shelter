@@ -2,20 +2,13 @@ import React from "react";
 import logo from "../Images/logo-img.jpeg";
 import "./nav.css";
 import { useState } from "react";
-import LoginForm from "../Forms/loginForm";
-// import RegisterForm from "../Forms/RegisterForm";
+import { Link } from "react-router-dom";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showLoginForm, setShowLoginForm] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleLoginClick = (e) => {
-    e.preventDefault();
-    setShowLoginForm(!showLoginForm);
   };
 
   return (
@@ -30,29 +23,21 @@ export default function Nav() {
           </div>
           <ul className={`nav-links ${isMenuOpen ? "show" : ""}`}>
             <li>
-              <a href="/HOME">HOME</a>
+              <Link to="/">HOME</Link>
             </li>
             <li>
-              <a href="/BUY">BUY</a>
+              <Link to="/register">REGISTER</Link>
+            </li>
+
+            <li>
+              <a href="/contact">CONTACT US</a>
             </li>
             <li>
-              <a href="/SELL">SELL</a>
-            </li>
-            <li>
-              <a href="/ABOUT">ABOUT US</a>
-            </li>
-            <li>
-              <a href="/CONTACT">CONTACT US</a>
-            </li>
-            <li>
-              <a href="/LOGIN" onClick={handleLoginClick}>
-                LOGIN
-              </a>
+              <Link to="/login">LOGIN</Link>
             </li>
           </ul>
         </div>
       </nav>
-      {showLoginForm && <LoginForm />}
     </div>
   );
 }
