@@ -6,7 +6,7 @@ const User = require('../../models/user');
 const Property = require('../../models/property');
 
 // Get all properties of logged-in user
-router.get('/properties', [auth, checkRole(['admin'])], async (req, res) => {
+router.get('/user_properties', [auth, checkRole(['admin'])], async (req, res) => {
     try {
         const properties = await Property.find({ owner: req.user.id });
         res.json(properties);
@@ -54,7 +54,7 @@ router.put('/profile', auth, [
     });
 
 // Delete user's account
-router.delete('/', [auth, checkRole(['admin'])], async (req, res) => {
+router.delete('/user', [auth, checkRole(['admin'])], async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
 
