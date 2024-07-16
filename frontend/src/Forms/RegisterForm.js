@@ -11,7 +11,6 @@ export default function Register() {
 
   function handleShowRegisterForm() {
     setShowRegisterForm(!showRegisterForm);
-    console.log("button closed");
   }
 
   function handleChange(event) {
@@ -36,6 +35,12 @@ export default function Register() {
       {showRegisterForm && (
         <div className="form-container">
           <form className="form" onSubmit={handleSubmit}>
+            <img
+              src={`${process.env.PUBLIC_URL}/Images/logo-img.jpeg`}
+              alt="logo"
+              className="shelter-logo"
+            />
+            <label className="form--label">Sign up</label>
             <div onClick={handleShowRegisterForm}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
