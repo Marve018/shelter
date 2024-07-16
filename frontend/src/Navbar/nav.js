@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../Images/logo-img.jpeg";
+// import logo from "../Images/logo-img.jpeg";
 import "./nav.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -15,8 +15,16 @@ export default function Nav() {
     <div>
       <nav>
         <div className="nav-wrapper">
-          <a href={logo}>
+          {/* <a href={logo}>
             <img src={logo} alt="logo" className="shelter-logo" />
+            
+          </a> */}
+          <a href="/">
+            <img
+              src={`${process.env.PUBLIC_URL}/Images/logo-img.jpeg`}
+              alt="logo"
+              className="shelter-logo"
+            />
           </a>
           <div className="menu-toggle" id="mobile-menu" onClick={toggleMenu}>
             &#9776;
