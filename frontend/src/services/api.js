@@ -99,3 +99,5 @@ export const rejectBooking = async (bookingId) => {
     const response = await axiosInstance.put(`/api/bookings/reject/${bookingId}`);
     return response.data;
 };
+
+
