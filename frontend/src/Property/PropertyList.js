@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropertyCard from "./PropertyCard";
 import propertiesData from "../data";
-// import PropertyDetail from "./PropertyDetail";
+import "./PropertyList.css";
 
 const PropertyList = () => {
   const [properties, setProperties] = useState([]);
@@ -10,7 +10,7 @@ const PropertyList = () => {
     setProperties(propertiesData);
   }, []);
   return (
-    <div className="property-list">
+    <div className="property-list grid-container">
       {properties.map((property) => (
         <PropertyCard key={property.id} property={property} />
       ))}
