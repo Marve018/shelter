@@ -9,6 +9,9 @@ export const registerUser = async (userData) => {
 // user login
 export const loginUser = async (loginData) => {
     const response = await axiosInstance.post("/api/users/login", loginData);
+    if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+    }
     return response.data;
 };
 
@@ -99,5 +102,3 @@ export const rejectBooking = async (bookingId) => {
     const response = await axiosInstance.put(`/api/bookings/reject/${bookingId}`);
     return response.data;
 };
-
-
