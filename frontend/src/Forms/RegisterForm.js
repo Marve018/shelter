@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./RegisterForm.css";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../services/api";
+import { useAuth } from "../components/authcontext";
 
 export default function Register() {
-  const [registerForm, setRegisterForm] = React.useState({
+  const [registerForm, setRegisterForm] = useState({
     email: "",
     password: "",
-    passwordConfirm: "",
+    firstName: "",
+    lastName: "",
+    role: "",
   });
-  const [showRegisterForm, setShowRegisterForm] = React.useState(true);
+  const [showRegisterForm, setShowRegisterForm] = useState(true);
+  const [error, setError] = useState(null);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   function handleShowRegisterForm() {
     setShowRegisterForm(!showRegisterForm);
@@ -21,12 +29,14 @@ export default function Register() {
     }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    if (registerForm.password === registerForm.passwordConfirm) {
-      console.log("Successfully signed up");
-    } else {
-      console.log("Passwords do not match");
+    try {
+      const response = await registerUser(registerForm);
+      login(response.token); // Assuming response contains a token
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to register");
     }
   }
 
@@ -34,6 +44,7 @@ export default function Register() {
     <>
       {showRegisterForm && (
         <div className="form-container">
+          {error && <p style={{ color: "red" }}>{error}</p>}
           <form className="form" onSubmit={handleSubmit}>
             <img
               src={`${process.env.PUBLIC_URL}/Images/logo-img.jpeg`}
@@ -72,12 +83,28 @@ export default function Register() {
               value={registerForm.password}
             />
             <input
-              type="password"
-              placeholder="Confirm password"
+              type="text"
+              placeholder="First Name"
               className="form--input"
-              name="passwordConfirm"
+              name="firstName"
               onChange={handleChange}
-              value={registerForm.passwordConfirm}
+              value={registerForm.firstName}
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              className="form--input"
+              name="lastName"
+              onChange={handleChange}
+              value={registerForm.lastName}
+            />
+            <input
+              type="text"
+              placeholder="Role e.g User, Owner"
+              className="form--input"
+              name="role"
+              onChange={handleChange}
+              value={registerForm.role}
             />
             <button className="form--submit">Sign up</button>
           </form>

@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import "./RegisterForm.css";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../services/api";
+import { useAuth } from "../components/authcontext";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showLoginForm, setShowLoginForm] = useState(true);
+  const [error, setError] = useState(null);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleShowLoginForm = () => {
     setShowLoginForm(!showLoginForm);
@@ -12,20 +18,28 @@ const LoginForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      const response = loginUser(formData);
+      login(response.data);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.response.data.message || "Failed to login");
+    }
   };
 
   return (
     <>
       {showLoginForm && (
         <div className="form-container">
+          {error && <p style={{ color: "red" }}>{error}</p>}
           <form onSubmit={handleSubmit} className="form">
             <img
               src={`${process.env.PUBLIC_URL}/Images/logo-img.jpeg`}
