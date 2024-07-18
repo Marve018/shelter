@@ -24,21 +24,30 @@ function App() {
           <Route path="/property/:id" element={<PropertyDetail />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/dashboard" element={
-            <PrivateRoute>
-              <UserDashboard />
-            </PrivateRoute>
-          } />
-          <Route path="/properties/create" element={
-            <PrivateRoute>
-              <CreateProperty />
-            </PrivateRoute>
-          } />
-          <Route path="/properties/book/:id" element={
-            <PrivateRoute>
-              <BookProperty />
-            </PrivateRoute>
-          } />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <UserDashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/properties/create"
+            element={
+              <PrivateRoute>
+                <CreateProperty />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/properties/book/:id"
+            element={
+              <PrivateRoute>
+                <BookProperty />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
     </Router>
