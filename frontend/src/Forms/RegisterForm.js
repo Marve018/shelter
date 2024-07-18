@@ -44,7 +44,7 @@ export default function Register() {
     <>
       {showRegisterForm && (
         <div className="form-container">
-          {error && <p style={{ color: "red" }}>{error}</p>}
+          
           <form className="form" onSubmit={handleSubmit}>
             <img
               src={`${process.env.PUBLIC_URL}/Images/logo-img.jpeg`}
@@ -52,6 +52,7 @@ export default function Register() {
               className="shelter-logo"
             />
             <label className="form--label">Sign up</label>
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <div onClick={handleShowRegisterForm}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

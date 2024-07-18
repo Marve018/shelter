@@ -2,7 +2,7 @@ import "./App.css";
 import Nav from "./Navbar/nav";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import RegisterForm from "./Forms/RegisterForm";
-import LoginForm from "./Forms/loginFor
+import LoginForm from "./Forms/loginForm";
 import PropertyList from "./Property/PropertyList";
 import PropertyDetail from "./Property/PropertyDetail";
 import LandingPage from "./pages/landingpage";

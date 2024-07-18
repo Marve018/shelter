@@ -2,13 +2,13 @@ import axiosInstance from "../utils/axiosInstance";
 
 // user registration
 export const registerUser = async (userData) => {
-    const response = await axiosInstance.post("/api/users/register", userData);
+    const response = await axiosInstance.post("/api/auth/register", userData);
     return response.data;
 };
 
 // user login
 export const loginUser = async (loginData) => {
-    const response = await axiosInstance.post("/api/users/login", loginData);
+    const response = await axiosInstance.post("/api/auth/login", loginData);
     if (response.data.token) {
         localStorage.setItem("token", response.data.token);
     }

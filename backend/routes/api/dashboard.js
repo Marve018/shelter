@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 const User = require('../../models/user');
 const Property = require('../../models/property');
+const checkRole = require('../../middleware/role');
 
 // Get all properties of logged-in user
 router.get('/user_properties', [auth, checkRole(['admin'])], async (req, res) => {

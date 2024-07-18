@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost/")
+//
 
 
 // SCHEMA SETUP
-const propertySchema = new mongoose.schema({
+const propertySchema = new mongoose.Schema({
 	title: {
 		type: String,
 		required: true
