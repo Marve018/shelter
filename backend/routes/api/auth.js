@@ -56,6 +56,7 @@ router.post(
             console.error(err.message);
             res.status(500).send('Server error');
         }
+        
     }
 );
 
@@ -107,5 +108,10 @@ router.post(
         }
     }
 );
+
+// logout
+router.get('/logout', (req, res) => {
+    res.send('logout');
+});
 
 module.exports = router;
