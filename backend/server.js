@@ -11,6 +11,7 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 // middleware
+app.use(cors());
 app.use(express.json({ extended: false }));
 
 // routes
@@ -20,7 +21,7 @@ app.use('/api/dashboard', require('./routes/api/dashboard'));
 app.use('/api/properties', require('./routes/api/properties'));
 app.use('/api/bookings', require('./routes/api/bookings'));
 
-app.use(cors());
+
 
 // app.get('/', (req, res) => {
 //     res.send('Welcome to Shelter!');

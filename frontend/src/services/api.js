@@ -2,8 +2,13 @@ import axiosInstance from "../utils/axiosInstance";
 
 // user registration
 export const registerUser = async (userData) => {
-    const response = await axiosInstance.post("/api/auth/register", userData);
-    return response.data;
+    try{
+        const response = await axiosInstance.post("/api/auth/register", userData)
+        return response.data;
+    } catch(error) {
+        console.error("Registration error:", error.response ? error.response.data : error.message);
+        throw error;
+    }
 };
 
 // user login
@@ -51,6 +56,12 @@ export const searchProperties = async (searchParams) => {
     return response.data;
 };
 
+// user properties
+export const getUserProperties = async () => {
+    const response = await axiosInstance.get("/api/dashboard/user_properties");
+    return response.data;
+};
+
 // upload image
 export const uploadImage = async (imageData) => {
     const response = await axiosInstance.post("/api/uploads", imageData, {
@@ -68,8 +79,8 @@ export const bookProperty = async (bookingData) => {
 };
 
 // fetch user profile
-export const getUserProfile = async (userId) => {
-    const response = await axiosInstance.get(`/api/users/${userId}`);
+export const getUserProfile = async () => {
+    const response = await axiosInstance.get(`/api/dashboard/profile`);
     return response.data;
 };
 
@@ -81,7 +92,7 @@ export const updateUserProfile = async (userId, userData) => {
 
 // fetch user bookings
 export const getUserBookings = async (userId) => {
-    const response = await axiosInstance.get(`/api/bookings/user/${userId}`);
+    const response = await axiosInstance.get(`/api/bookings/history/${userId}`);
     return response.data;
 };
 

@@ -6,6 +6,17 @@ const User = require('../../models/user');
 const Property = require('../../models/property');
 const checkRole = require('../../middleware/role');
 
+// Get user's profile
+router.get('/profile', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        res.json(user);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 // Get all properties of logged-in user
 router.get('/user_properties', [auth, checkRole(['admin'])], async (req, res) => {
     try {
@@ -72,5 +83,12 @@ router.delete('/user', [auth, checkRole(['admin'])], async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+// In routes/api/dashboard.js
+
+router.get('/test', (req, res) => {
+    res.send('Test route works!');
+});
+
 
 module.exports = router;
