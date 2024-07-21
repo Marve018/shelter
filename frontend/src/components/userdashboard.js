@@ -3,28 +3,28 @@ import { getUserProfile, getUserBookings } from '../services/api';
 import { useAuth } from './authcontext';
 
 const UserDashboard = () => {
-  const { user } = useAuth();
+  const { authState } = useAuth();
   const [profile, setProfile] = useState(null);
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    if (!user) return;
+    if (!authState.user) return;
 
     const fetchUserProfile = async () => {
-      const userData = await getUserProfile(user.userId); // Using user.userId
+      const userData = await getUserProfile(authState.user.userId);
       setProfile(userData);
     };
 
     const fetchUserBookings = async () => {
-      const bookingsData = await getUserBookings(user.userId); // Using user.userId
+      const bookingsData = await getUserBookings(authState.user.userId);
       setBookings(bookingsData);
     };
 
     fetchUserProfile();
     fetchUserBookings();
-  }, [user]);
+  }, [authState.user]);
 
-  if (!user || !profile) {
+  if (!authState.user || !profile) {
     return <div>Loading...</div>;
   }
 
