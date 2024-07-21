@@ -24,16 +24,13 @@ const LoginForm = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {  // Add async here
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await loginUser(formData);
-      localStorage.setItem("token", response.token);
-      login({
-        token: response.token,
-        userId: response.user.id
-      });
-      navigate("/dashboard");
+      console.log("Login response:", response);
+      login(response.token); // Pass only the token string
+      navigate("/dashboard/profile");
     } catch (err) {
       setError(err.response?.data?.message || "Failed to login");
     }

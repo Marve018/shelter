@@ -14,11 +14,13 @@ export const registerUser = async (userData) => {
 // user login
 export const loginUser = async (loginData) => {
     const response = await axiosInstance.post("/api/auth/login", loginData);
+    console.log("Login response data:", response.data); // Debugging log
     if (response.data.token) {
         localStorage.setItem("token", response.data.token);
     }
     return response.data;
 };
+
 
 // get all properties
 export const getProperties = async () => {
