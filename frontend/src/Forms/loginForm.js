@@ -16,6 +16,7 @@ const LoginForm = () => {
     console.log("Show login form");
   };
 
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -30,6 +31,7 @@ const LoginForm = () => {
       const response = await loginUser(formData);
       console.log("Login response:", response);
       login(response.token); // Pass only the token string
+      console.log("Navigating to /dashboard");
       navigate("/dashboard/profile");
     } catch (err) {
       setError(err.response?.data?.message || "Failed to login");

@@ -93,8 +93,8 @@ export const updateUserProfile = async (userId, userData) => {
 };
 
 // fetch user bookings
-export const getUserBookings = async (userId) => {
-    const response = await axiosInstance.get(`/api/bookings/history/${userId}`);
+export const getUserBookings = async () => {
+    const response = await axiosInstance.get(`/api/bookings/history`);
     return response.data;
 };
 

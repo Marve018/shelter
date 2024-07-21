@@ -10,49 +10,51 @@ import UserDashboard from "./components/userdashboard";
 import CreateProperty from "./Forms/CreateProperty";
 import BookProperty from "./Forms/BookProperty";
 import PrivateRoute from "./components/PrivateRoute";
-
+import { AuthProvider } from './components/authcontext';
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Nav />
-
-        <Routes>
-          <Route path="/home" element={<LandingPage />} />
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/properties" element={<PropertyList />} />
-          <Route path="/property/:id" element={<PropertyDetail />} />
-          <Route path="/register" element={<RegisterForm />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route
-            path="/dashboard/profile"
-            element={
-              <PrivateRoute>
-                <UserDashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/properties/create"
-            element={
-              <PrivateRoute>
-                <CreateProperty />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/properties/book/:id"
-            element={
-              <PrivateRoute>
-                <BookProperty />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </div>
-    </Router>
-  );
-}
+    return (
+      <Router>
+        <AuthProvider>
+          <div className="App">
+            <Nav />
+  
+            <Routes>
+              <Route path="/home" element={<LandingPage />} />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/properties" element={<PropertyList />} />
+              <Route path="/property/:id" element={<PropertyDetail />} />
+              <Route path="/register" element={<RegisterForm />} />
+              <Route path="/login" element={<LoginForm />} />
+              <Route
+                path="/dashboard/profile"
+                element={
+                  <PrivateRoute>
+                    <UserDashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/properties/create"
+                element={
+                  <PrivateRoute>
+                    <CreateProperty />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/properties/book/:id"
+                element={
+                  <PrivateRoute>
+                    <BookProperty />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </div>
+        </AuthProvider>
+      </Router>
+    );
+  }
 
 export default App;
