@@ -3,6 +3,7 @@ import "./RegisterForm.css";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../services/api";
 import { useAuth } from "../components/authcontext";
+import LandingPage from "../pages/landingpage";
 
 export default function Register() {
   const [registerForm, setRegisterForm] = useState({
@@ -33,7 +34,7 @@ export default function Register() {
     event.preventDefault();
     try {
       const response = await registerUser(registerForm);
-      login(response.token); // Assuming response contains a token
+      login(response.token);
       navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Failed to register");
@@ -42,9 +43,8 @@ export default function Register() {
 
   return (
     <>
-      {showRegisterForm && (
+      {showRegisterForm ? (
         <div className="form-container">
-          
           <form className="form" onSubmit={handleSubmit}>
             <img
               src={`${process.env.PUBLIC_URL}/Images/logo-img.jpeg`}
@@ -110,6 +110,8 @@ export default function Register() {
             <button className="form--submit">Sign up</button>
           </form>
         </div>
+      ) : (
+        <LandingPage />
       )}
     </>
   );

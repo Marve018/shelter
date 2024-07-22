@@ -3,6 +3,7 @@ import "./RegisterForm.css";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/api";
 import { useAuth } from "../components/authcontext";
+import LandingPage from "../pages/landingpage";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -37,7 +38,7 @@ const LoginForm = () => {
 
   return (
     <>
-      {showLoginForm && (
+      {showLoginForm ? (
         <div className="form-container">
           {error && <p style={{ color: "red" }}>{error}</p>}
           <form onSubmit={handleSubmit} className="form">
@@ -84,6 +85,8 @@ const LoginForm = () => {
             </button>
           </form>
         </div>
+      ) : (
+        <LandingPage />
       )}
     </>
   );
