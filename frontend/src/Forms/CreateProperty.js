@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createProperty } from '../services/api';
+import { createProperty, uploadImage } from '../services/api';
 import { useAuth } from '../components/authcontext';
 
 const CreateProperty = () => {
@@ -12,10 +12,11 @@ const CreateProperty = () => {
     country: '',
     state: '',
     city: '',
-    imageUrl: ''
+    imageUrl: []
   });
+  const [imageFile, setImageFile] = useState(null);
   const [error, setError] = useState(null);
-  const { user } = useAuth();
+  const { authState } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,17 +27,30 @@ const CreateProperty = () => {
     }));
   };
 
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await createProperty(formData);
+      let imageUrl = formData.imageUrl;
+      if (imageFile) {
+        const imageFormData = new FormData();
+        imageFormData.append('image', imageFile);
+        const imageResponse = await uploadImage(imageFormData);
+        imageUrl = [{ url: imageResponse.url, public_id: imageResponse.public_id }];
+      }
+      const response = await createProperty({ ...formData, imageUrl });
       navigate('/properties');
     } catch (err) {
-      setError(err.response.data.message || 'Failed to create property');
+      setError(err.response?.data?.message || 'Failed to create property');
     }
   };
 
-  if (!user || user.role !== 'owner') {
+  console.log('Auth state:', authState);
+  
+  if (!authState.user || authState.user.role !== 'admin') {
     return <p>You are not authorized to create properties.</p>;
   }
 
@@ -52,7 +66,7 @@ const CreateProperty = () => {
         <input type="text" name="country" placeholder="Country" value={formData.country} onChange={handleChange} required />
         <input type="text" name="state" placeholder="State" value={formData.state} onChange={handleChange} required />
         <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} required />
-        <input type="text" name="imageUrl" placeholder="Image URL" value={formData.imageUrl} onChange={handleChange} required />
+        <input type="file" name="image" accept="image/*" onChange={handleImageChange} required />
         <button type="submit">Create Property</button>
       </form>
     </div>

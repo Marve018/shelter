@@ -15,13 +15,25 @@ router.post('/property', [auth, checkRole(['admin'])], [
     check('country', 'Country is required').not().isEmpty(),
     check('state', 'State is required').not().isEmpty(),
     check('city', 'City is required').not().isEmpty(),
-    check('imageUrl', 'Image URL is required').not().isEmpty()
+    check('imageUrl', 'Image URL is required').custom((value) => {
+        if (!Array.isArray(value)) {
+            throw new Error('Image URL must be an array');
+        }
+        value.forEach(image => {
+            if (!image.url || !image.public_id) {
+                throw new Error('Each image must have a url and a public_id');
+            }
+        });
+        return true;
+    })
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
     const { title, description, price, address, country, state, city, imageUrl } = req.body;
+
+    console.log('Incoming property data:', req.body);
 
     try {
         const newProperty = new Property({
@@ -32,7 +44,7 @@ router.post('/property', [auth, checkRole(['admin'])], [
             country,
             state,
             city,
-            imageUrl,
+            imageUrl: JSON.parse(JSON.stringify(imageUrl)),
             owner: req.user.id
         });
 
@@ -129,7 +141,7 @@ router.put('/property/:id', [auth, checkRole(['admin'])], async (req, res) => {
 });
 
 // Define a route for retrieving properties based on query parameters
-router.get('/properties', auth, async (req, res) => {
+router.get('/search', auth, async (req, res) => {
     try {
         // Extract query parameters from the request
         const { search, country, state, city, min_price, max_price } = req.query;

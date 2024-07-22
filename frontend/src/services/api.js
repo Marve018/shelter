@@ -24,7 +24,7 @@ export const loginUser = async (loginData) => {
 
 // get all properties
 export const getProperties = async () => {
-    const response = await axiosInstance.get("/api/properties");
+    const response = await axiosInstance.get("/api/properties/all_properties");
     return response.data;
 };
 
@@ -36,7 +36,7 @@ export const getPropertyById = async (propertyId) => {
 
 // create new properties
 export const createProperty = async (propertyData) => {
-    const response = await axiosInstance.post("/api/properties", propertyData);
+    const response = await axiosInstance.post("/api/properties/property", propertyData);
     return response.data;
 };
 
@@ -66,7 +66,7 @@ export const getUserProperties = async () => {
 
 // upload image
 export const uploadImage = async (imageData) => {
-    const response = await axiosInstance.post("/api/uploads", imageData, {
+    const response = await axiosInstance.post("/api/uploads/upload", imageData, {
         headers: {
             "Content-Type": "multipart/form-data",
         },
