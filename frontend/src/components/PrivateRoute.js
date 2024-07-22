@@ -4,7 +4,10 @@ import { useAuth } from './authcontext';
 
 const PrivateRoute = ({ children }) => {
   const { authState } = useAuth();
-  console.log("Auth state in PrivateRoute:", authState);
+
+  if (authState.loading) {
+    return <div>Loading...</div>; // Render a loading state while auth is being initialized
+  }
 
   return authState.user ? children : <Navigate to="/login" />;
 };

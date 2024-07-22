@@ -43,7 +43,8 @@ router.post(
             await user.save();
             const payload = {
                 user: {
-                    id: user.id
+                    id: user.id,
+                    role: user.role
                 }
             };
 
@@ -93,7 +94,8 @@ router.post(
 
             const payload = {
                 user: {
-                    id: user.id
+                    id: user.id,
+                    role: user.role
                 }
             };
 

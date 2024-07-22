@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const upload = require('../../config/multer');
 
-router.post('/image_upload', upload.single('image'), (req, res) => {
+router.post('/upload', upload.single('image'), (req, res) => {
     if (req.file) {
-        res.json({ url: req.file.path });
+        res.json({ url: req.file.path, public_id: req.file.filename });
     } else {
         res.status(400).json({ msg: 'No file uploaded' });
     }
