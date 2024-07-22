@@ -35,7 +35,7 @@ export default function Register() {
     try {
       const response = await registerUser(registerForm);
       login(response.token);
-      navigate("/dashboard");
+      navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Failed to register");
     }
