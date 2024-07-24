@@ -73,12 +73,15 @@ export const uploadImage = async (imageData) => {
     });
     return response.data;
 };
-
 // book a property
 export const bookProperty = async (bookingData) => {
-    const response = await axiosInstance.post("/api/bookings", bookingData);
+    const response = await axiosInstance.post(`/api/bookings/property/${bookingData.propertyId}`, bookingData, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
     return response.data;
-};
+  };
 
 // fetch user profile
 export const getUserProfile = async () => {
