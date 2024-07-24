@@ -8,14 +8,15 @@ const Booking = require('../../models/booking');
 
 // book a property
 router.post('/property/:id', [auth, checkRole(['user'])], [
-    check('startDate', 'Start date is required').not().isDate(),
-    check('endDate', 'End date is required').not().isDate()
+    check('startDate', 'Start date is required').isISO8601(),
+    check('endDate', 'End date is required').isISO8601()
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    const { propertyId, startDate, endDate } = req.body;
+    const { startDate, endDate } = req.body;
+    const propertyId = req.params.id;
 
     try {
         const property = await Property.findById(propertyId);
@@ -27,11 +28,7 @@ router.post('/property/:id', [auth, checkRole(['user'])], [
             $or: [
                 { $and: [{ startDate: { $lte: startDate } }, { endDate: { $gte: startDate } }] },
                 { $and: [{ startDate: { $lte: endDate } }, { endDate: { $gte: endDate } }] },
-                { $and: [{ startDate: { $gte: startDate } }, { endDate: { $lte: endDate } }] },
-                { $and: [{ startDate: { $lte: startDate } }, { endDate: { $gte: startDate } }, { endDate: { $lte: endDate } }] },
-                { $and: [{ startDate: { $gte: startDate } }, { startDate: { $lte: endDate } }, { endDate: { $gte: endDate } }] },
-                { $and: [{ startDate: { $gte: startDate } }, { endDate: { $lte: endDate } }, { startDate: { $lte: endDate } }] },
-                { $and: [{ startDate: { $lte: startDate } }, { endDate: { $gte: endDate } }, { startDate: { $gte: startDate } }] }
+                { $and: [{ startDate: { $gte: startDate } }, { endDate: { $lte: endDate } }] }
             ],
             status: 'booked'
         });
@@ -51,6 +48,7 @@ router.post('/property/:id', [auth, checkRole(['user'])], [
         res.status(500).send('Server Error');
     }
 });
+
 
 // define route to get user's booking history
 router.get('/history', auth, async (req, res) => {

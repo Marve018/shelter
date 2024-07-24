@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { bookProperty } from '../services/api';
-import { useAuth } from '../components/authcontext';
 
-const BookProperty = () => {
+const BookProperty = ({ propertyId, user }) => {
   const [formData, setFormData] = useState({
     startDate: '',
     endDate: ''
   });
   const [error, setError] = useState(null);
-  const { user } = useAuth();
   const navigate = useNavigate();
-  const { id } = useParams();
+
+   useEffect(() => {
+    console.log('User:', user);
+    console.log('PropertyId:', propertyId);
+  }, [user, propertyId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,26 +25,27 @@ const BookProperty = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!user) {
+      setError('You need to be logged in to book a property.');
+      return;
+    }
     try {
       const bookingData = {
         ...formData,
-        propertyId: id,
-        userId: user.id
+        propertyId,
+        userId: user._id
       };
       const response = await bookProperty(bookingData);
-      navigate(`/properties/${id}`);
+      console.log('Booking response:', response);
+      navigate(`/properties/${propertyId}`);
     } catch (err) {
       setError(err.response.data.message || 'Booking failed');
     }
   };
 
-  if (!user) {
-    return <p>You need to be logged in to book a property.</p>;
-  }
-
   return (
     <div>
-      <h1>Book Property</h1>
+      <h3>Book Property</h3>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <input type="date" name="startDate" value={formData.startDate} onChange={handleChange} required />
