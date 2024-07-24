@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { registerUser } from "../services/api";
 import { useAuth } from "../components/authcontext";
 import LandingPage from "../pages/landingpage";
+import LoginForm from "./loginForm";
 
 export default function Register() {
   const [registerForm, setRegisterForm] = useState({
@@ -14,12 +15,18 @@ export default function Register() {
     role: "",
   });
   const [showRegisterForm, setShowRegisterForm] = useState(true);
+  const [showLoginForm, setShowLoginForm] = useState(false); // Add state for showing login form
   const [error, setError] = useState(null);
   const { login } = useAuth();
   const navigate = useNavigate();
 
   function handleShowRegisterForm() {
     setShowRegisterForm(!showRegisterForm);
+  }
+
+  function handleShowLoginForm() {
+    setShowRegisterForm(false);
+    setShowLoginForm(true);
   }
 
   function handleChange(event) {
@@ -101,15 +108,20 @@ export default function Register() {
             />
             <input
               type="text"
-              placeholder="Role e.g User, Owner"
+              placeholder="Role e.g user, admin(Owner)"
               className="form--input"
               name="role"
               onChange={handleChange}
               value={registerForm.role}
             />
             <button className="form--submit">Sign up</button>
+            <p className="form--toggle" onClick={handleShowLoginForm}>
+              Already a user? Login
+            </p>
           </form>
         </div>
+      ) : showLoginForm ? (
+        <LoginForm />
       ) : (
         <LandingPage />
       )}

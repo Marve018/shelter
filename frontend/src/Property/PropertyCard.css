@@ -1,5 +1,5 @@
 .property-card {
-  border: 1px solid #ccc;
+  border: 5px solid #ccc;
   padding: 16px;
   margin: 16px;
   border-radius: 8px;
@@ -28,3 +28,6 @@
   font-size: 1rem;
   color: #777;
 }
+.book-property-form {
+    margin-top: 10px;
+  }

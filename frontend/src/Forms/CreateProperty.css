@@ -1,0 +1,60 @@
+.property-detail{
+    padding:20px;
+}
+h1{
+    padding :50px;
+    height:30px;
+    font-size: 50px;
+}
+.property-detail form input{
+    width: 25%;
+    height:50px;
+    font-size: 15px;
+    margin:020px 3px;
+}
+.property-detail form{
+    height:fit-content;
+    width: 60%;
+    text-align: center;
+    margin:20px auto;
+    
+    padding:10px;
+    box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);
+}
+form  input:nth-of-type(1){
+    width:50%;
+    margin:10px 100px;
+}
+form  input:nth-of-type(6){
+    width:30%;
+    margin:10px 3px;
+    
+}
+input[type='file']{
+    display:none;
+
+}
+.property-detail form label{
+    background:#efeee5;
+    padding:15px 0px;
+   display:inline-block;
+    width: 20%;
+    margin:1px 3px;
+    height:50px;
+    border:1px solid #333;
+}
+.txt{
+    width: 50%;
+    height:50px;
+    font-size: 10px;
+    margin:040px 100px;
+    margin-bottom:20px;
+}
+button{
+    padding: 20px 0px;
+    width: 50%;
+    margin:10px;
+    background-color:  orangered;
+    border:none;
+    border-radius: 5px;
+}

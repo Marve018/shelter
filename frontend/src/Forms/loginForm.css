@@ -4,3 +4,10 @@
   right: 10px;
   cursor: pointer;
 }
+.form--toggle {
+    margin-top: 10px;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+  }
+  

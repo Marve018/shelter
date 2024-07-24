@@ -1,7 +1,8 @@
-.property-detail {
+/* .property-detail {
   display: flex;
-  flex-direction: column;
+flex-direction:column;
   align-items: center;
+  justify-content: space-between;
   padding: 20px;
 }
 
@@ -18,7 +19,31 @@
 
 .property-detail-price,
 .property-detail-location,
-.property-detail-description {
-  font-size: 1.2em;
-  margin: 5px 0;
+.property-description {
+  font-size: 100px;
+  
+  height:30px;
+  background:black;
 }
+
+h1{
+    padding :100px;
+    height:30px;
+    font-size: 100px;
+
+input{
+    width: 20%;
+    height:50px;
+    font-size: 10px;
+    margin:50px;
+}
+input[type='file']{
+    text-align:center;
+    margin:100px;
+}
+.txt{
+    width: 20%;
+    height:50px;
+    font-size: 10px;
+    margin: 10px;
+} */

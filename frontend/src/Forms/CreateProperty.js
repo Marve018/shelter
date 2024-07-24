@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createProperty, uploadImage } from '../services/api';
 import { useAuth } from '../components/authcontext';
+import "./CreateProperty.css";
 
 const CreateProperty = () => {
   const [formData, setFormData] = useState({
@@ -55,19 +56,20 @@ const CreateProperty = () => {
   }
 
   return (
-    <div>
+    <div className='property-detail'>
       <h1>Create Property</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} required />
-        <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange} required />
-        <input type="number" name="price" placeholder="Price" value={formData.price} onChange={handleChange} required />
+        <br></br><textarea className='txt' name="description" placeholder="Description" value={formData.description} onChange={handleChange} required />
+        <br></br><input type="number" name="price" placeholder="Price" value={formData.price} onChange={handleChange} required />
         <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} required />
-        <input type="text" name="country" placeholder="Country" value={formData.country} onChange={handleChange} required />
+        <br></br><input type="text" name="country" placeholder="Country" value={formData.country} onChange={handleChange} required />
         <input type="text" name="state" placeholder="State" value={formData.state} onChange={handleChange} required />
-        <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} required />
-        <input type="file" name="image" accept="image/*" onChange={handleImageChange} required />
-        <button type="submit">Create Property</button>
+        <br></br><input type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} required />
+        <input type="file" name="image" accept="image/*" id='images' onChange={handleImageChange} required />
+        <label for='images' >input image</label>
+        <br></br><button type="submit">Create Property</button>
       </form>
     </div>
   );

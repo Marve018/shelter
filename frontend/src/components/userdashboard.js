@@ -30,8 +30,9 @@ const UserDashboard = () => {
 
   return (
     <div>
-      <h1>User Dashboard</h1>
+      
       <div>
+        <h3>User Dashboard</h3>
         <h2>Profile</h2>
         <p><strong>Name:</strong> {profile.firstName} {profile.lastName}</p>
         <p><strong>Email:</strong> {profile.email}</p>

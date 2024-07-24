@@ -42,14 +42,14 @@ const PropertyDetail = async () => {
   }
 
   return (
-    <div>
-        <h1>{property.title}</h1>
+    <div className="property-detail" >
+        <h1>{property.title}</h1><br></br>
         <p>{property.description}</p>
-        <p>Price: ${property.price}</p>
+        <p>Price: ${property.price}</p><br><br>
         <p>Address: {property.address}</p>
-        <p>Country: {property.country}</p>
+        <p>Country: {property.country}</p></br></br>
         <p>State: {property.state}</p>
-        <p>City: {property.city}</p>
+        <p>City: {property.city}</p><br></br>
         <div>
             {property.imageUrl.map((image, index) => (
                 <img key={index} src={image.url} alt={property.title} />
