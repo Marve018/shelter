@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUserProfile, getUserBookings } from '../services/api';
 import { useAuth } from './authcontext';
+import { Link } from "react-router-dom";
 
 const UserDashboard = () => {
   const { authState } = useAuth();
@@ -30,15 +31,15 @@ const UserDashboard = () => {
 
   return (
     <div>
-      
-      <div>
-        <h3>User Dashboard</h3>
+      <h3>User Dashboard</h3>
+      <div className='profile-con'>
+        
         <h2>Profile</h2>
         <p><strong>Name:</strong> {profile.firstName} {profile.lastName}</p>
         <p><strong>Email:</strong> {profile.email}</p>
         <p><strong>Role:</strong> {profile.role}</p>
       </div>
-      <div>
+      <div className='book-con'>
         <h2>Bookings</h2>
         {bookings.length === 0 ? (
           <p>No bookings found.</p>
@@ -55,6 +56,9 @@ const UserDashboard = () => {
           </ul>
         )}
       </div>
+      <Link to="/properties/create" className="btn">
+            Create Property
+          </Link>
     </div>
   );
 };

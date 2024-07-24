@@ -23,7 +23,10 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <h1>Welcome to Shelter</h1>
+      <header className="header">
+        <h1>Welcome to Shelter</h1>
+        <p>Discover Your Dream Home</p>
+      </header>
       <Sections>
         <Section>
           <h2>Find Your Dream Home</h2>
@@ -31,16 +34,16 @@ const LandingPage = () => {
             Shelter provides a wide range of properties for lease and purchase.
             From apartments to houses, we have something for everyone.
           </p>
-          {/* <Link to="/property" className="btn">
-            Search Properties
-          </Link> */}
+          <Link to="/login" className="btn">
+            Get Started
+          </Link>
         </Section>
         <Section>
           <h2>Featured Properties</h2>
           <div className="featured-properties">
             {propertyLinks.map((property) => (
               <Link
-                to={property.path}
+                to={`/property/${property.id}`}
                 key={property.id}
                 className="property-link"
               >

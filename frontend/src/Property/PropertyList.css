@@ -69,7 +69,7 @@ svg{
   }
   
   button {
-   
+   background:#007bff;
     padding: 10px 15px;
     cursor: pointer;
   }
@@ -85,6 +85,7 @@ svg{
   
   .filter-btn{
     width:8%;
+    background:#ff7b00;
   }
   .grid-container {
     display: grid;
@@ -92,11 +93,24 @@ svg{
     gap: 20px;
   }
   .user-dashboard {
-    margin-bottom: 20px;
+    
     
     height:100vh;
     background:#efeee5; 
     width:20%;
-    position:fixed;
-    top:0;
+    
   } 
+  .profile-con,
+  .book-con{
+    margin:60px auto;
+    width:90%; 
+    border:1px solid #ccc;
+    height:200px;
+  }
+  .profile-con h2,
+  .book-con h2{
+    padding-top:20px;
+  }
+.book-prop{
+    text-align:center;
+}

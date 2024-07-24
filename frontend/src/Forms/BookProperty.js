@@ -47,7 +47,7 @@ const BookProperty = ({ propertyId, user }) => {
     <div>
       <h3>Book Property</h3>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='book-prop'>
         <input type="date" name="startDate" value={formData.startDate} onChange={handleChange} required />
         <input type="date" name="endDate" value={formData.endDate} onChange={handleChange} required />
         <button type="submit">Book Property</button>
