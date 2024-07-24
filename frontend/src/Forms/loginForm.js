@@ -35,6 +35,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+        console.log('Login Data:', formData);
       const response = await loginUser(formData);
       console.log("Login response:", response);
       login(response.token); // Pass only the token string
