@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/api";
 import { useAuth } from "../components/authcontext";
 import LandingPage from "../pages/landingpage";
+import Register from "./RegisterForm";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showLoginForm, setShowLoginForm] = useState(true);
+  const [showRegisterForm, setShowRegisterForm] = useState(false); // Add state for showing register form
   const [error, setError] = useState(null);
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -17,7 +19,11 @@ const LoginForm = () => {
     console.log("Show login form");
   };
 
-  
+  const handleShowRegisterForm = () => {
+    setShowLoginForm(false);
+    setShowRegisterForm(true);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -33,7 +39,7 @@ const LoginForm = () => {
       console.log("Login response:", response);
       login(response.token); // Pass only the token string
       console.log("Navigating to /dashboard");
-      navigate("/dashboard/profile");
+      navigate("/properties");
     } catch (err) {
       setError(err.response?.data?.message || "Failed to login");
     }
@@ -86,8 +92,13 @@ const LoginForm = () => {
             <button type="submit" className="form--submit">
               Login
             </button>
+            <p className="form--toggle" onClick={handleShowRegisterForm}>
+              Don't have an account? Sign up
+            </p>
           </form>
         </div>
+      ) : showRegisterForm ? (
+        <Register />
       ) : (
         <LandingPage />
       )}
