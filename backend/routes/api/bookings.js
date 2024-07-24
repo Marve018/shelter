@@ -7,7 +7,7 @@ const Property = require('../../models/property');
 const Booking = require('../../models/booking');
 
 // book a property
-router.post('/property/:id', [auth, checkRole(['user'])], [
+router.post('/property/:id', [auth, checkRole(['user', 'admin'])], [
     check('startDate', 'Start date is required').isISO8601(),
     check('endDate', 'End date is required').isISO8601()
 ], async (req, res) => {

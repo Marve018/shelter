@@ -10,9 +10,9 @@ const BookProperty = ({ propertyId, user }) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-   useEffect(() => {
+  useEffect(() => {
     console.log('User:', user);
-    console.log('PropertyId:', propertyId);
+    console.log('PropertyId:', propertyId); // Check if propertyId is correctly retrieved
   }, [user, propertyId]);
 
   const handleChange = (e) => {
@@ -35,11 +35,11 @@ const BookProperty = ({ propertyId, user }) => {
         propertyId,
         userId: user._id
       };
-      const response = await bookProperty(bookingData);
+      const response = await bookProperty(bookingData); // Use bookingData directly
       console.log('Booking response:', response);
-      navigate(`/properties/${propertyId}`);
+      navigate(`/property/${propertyId}`);
     } catch (err) {
-      setError(err.response.data.message || 'Booking failed');
+      setError(err.response?.data?.message || 'Booking failed');
     }
   };
 

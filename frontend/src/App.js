@@ -43,7 +43,7 @@ function App() {
                 }
               />
               <Route
-                path="/properties/book/:id"
+                path="/propertey/book/:id"
                 element={
                   <PrivateRoute>
                     <BookProperty />

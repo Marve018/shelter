@@ -17,9 +17,11 @@ const PropertyCard = ({ property }) => {
     setShowBookingForm(!showBookingForm);
   };
 
+  const propertyId = property.id || property._id; // Fallback to _id if id is not available
+
   return (
     <div className="property-card">
-      <Link to={`/property/${property.id}`}>
+      <Link to={`/property/${propertyId}`}>
         <img
           src={property.imageUrl[0].url} // Use the Cloudinary URL directly
           alt={property.title}
@@ -38,10 +40,9 @@ const PropertyCard = ({ property }) => {
       <button onClick={toggleBookingForm}>
         {showBookingForm ? "Hide Booking Form" : "Book Property"}
       </button>
-      {showBookingForm && <BookProperty propertyId={property.id} user={authState.user} />}
+      {showBookingForm && <BookProperty propertyId={propertyId} user={authState.user} />}
     </div>
   );
 };
-
 
 export default PropertyCard;
