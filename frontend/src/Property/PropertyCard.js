@@ -32,13 +32,13 @@ const PropertyCard = ({ property }) => {
         <p className="property-address">{property.address}</p>
       </Link>
       <button onClick={toggleDescription}>
-        {showDescription ? "Hide Description" : "Show Description"}
+        {showDescription ? "Hide" : "Description"}
       </button>
       {showDescription && (
         <div className="property-description">{property.description}</div>
       )}
       <button onClick={toggleBookingForm}>
-        {showBookingForm ? "Hide Booking Form" : "Book Property"}
+        {showBookingForm ? "Hide " : "Book Property"}
       </button>
       {showBookingForm && <BookProperty propertyId={propertyId} user={authState.user} />}
     </div>

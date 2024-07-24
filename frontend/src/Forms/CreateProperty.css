@@ -21,7 +21,7 @@ h1{
     padding:10px;
     box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);
 }
-form  input:nth-of-type(1){
+.property-detail form  input:nth-of-type(1){
     width:50%;
     margin:10px 100px;
 }

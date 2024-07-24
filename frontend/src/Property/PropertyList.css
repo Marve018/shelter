@@ -95,7 +95,7 @@ svg{
   .user-dashboard {
     
     
-    height:100vh;
+    height:90vh;
     background:#efeee5; 
     width:20%;
     
@@ -111,6 +111,7 @@ svg{
   .book-con h2{
     padding-top:20px;
   }
-.book-prop{
-    text-align:center;
+.book-prop input{
+     margin-top:10px;
 }
+

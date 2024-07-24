@@ -31,3 +31,6 @@
 .book-property-form {
     margin-top: 10px;
   }
+.property-card button{
+    padding:5px 10px;
+}

@@ -52,6 +52,8 @@ export default function Register() {
     <>
       {showRegisterForm ? (
         <div className="form-container">
+          <img src={`${process.env.PUBLIC_URL}/Images/waving-hand.gif`} alt="Shelter Logo" className="header-img" />
+
           <form className="form" onSubmit={handleSubmit}>
             <img
               src={`${process.env.PUBLIC_URL}/Images/logo-img.jpeg`}

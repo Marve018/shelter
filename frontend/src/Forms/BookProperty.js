@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { bookProperty } from '../services/api';
 
+
 const BookProperty = ({ propertyId, user }) => {
   const [formData, setFormData] = useState({
     startDate: '',
