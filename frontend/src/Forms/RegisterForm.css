@@ -15,9 +15,27 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
+  
+  
 }
+.form-img{
 
+    position: absolute;
+    height: 200px;
+    top:0;
+    
+}
+.form-img1,
+.form-img2{
+    position: absolute;
+    height: 200px;
+    left: 20%;
+    
+}
+.form-img2{
+    left: 10%;
+    height: 250px;
+}
 .form {
   background-color: white;
   padding: 50px;
@@ -26,6 +44,7 @@ body {
   flex-direction: column;
   align-items: center;
   box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);
+  width: 40%;
 }
 
 .form--input {
