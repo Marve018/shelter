@@ -50,17 +50,19 @@ const LoginForm = () => {
     <>
       {showLoginForm ? (
         <div className="form-container">
-          <img src={`${process.env.PUBLIC_URL}/Images/waving-hand.gif`} alt="Shelter Logo" className="header-img" />
+          <img src={`${process.env.PUBLIC_URL}/Images/fun3.png`} alt="Shelter Logo" className="form-img1" />
 
           {error && <p style={{ color: "red" }}>{error}</p>}
           <form onSubmit={handleSubmit} className="form">
+         
+
             <img
               src={`${process.env.PUBLIC_URL}/Images/logo-img.jpeg`}
               alt="logo"
               className="shelter-logo"
             />
             <label className="form--label">Login</label>
-            <div>
+            
               <div onClick={handleShowLoginForm} className="close-icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -81,8 +83,8 @@ const LoginForm = () => {
                 onChange={handleChange}
                 className="form--input"
               />
-            </div>
-            <div>
+            
+            
               <input
                 type="password"
                 name="password"
@@ -91,7 +93,7 @@ const LoginForm = () => {
                 onChange={handleChange}
                 className="form--input"
               />
-            </div>
+            
             <button type="submit" className="form--submit">
               Login
             </button>

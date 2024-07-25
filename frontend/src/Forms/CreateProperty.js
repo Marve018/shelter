@@ -59,6 +59,7 @@ const CreateProperty = () => {
     <div className='property-detail'>
       <h1>Create Property</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      <img src={`${process.env.PUBLIC_URL}/Images/fun1.png`} alt="Shelter Logo" className="form-img2" />
       <form onSubmit={handleSubmit}>
         <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} required />
         <br></br><textarea className='txt' name="description" placeholder="Description" value={formData.description} onChange={handleChange} required />
