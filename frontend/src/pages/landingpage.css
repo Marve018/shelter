@@ -29,17 +29,40 @@ body {
 .header-img{
     position:absolute;
     right:15px;
+    
 }
+@media screen and (max-width: 600px) {
+    .header-img{
+        right:0;
+        position:absolute;
+        width: 150px;
+        height: 150px;
+    }
+    .header h1{
+        display:block;
+        font-size:2em;
+        margin-bottom:10px;
+    }
+    .header .pe{
+        display:none;
+    }
+}
+.he{
+    height:200px;
+    width:100%;
 
+}
 .header h1 {
   font-size: 3em;
   margin-bottom: 10px;
+ 
   color: #007bff;
 }
 
-.header p {
+.header .pe{
   font-size: 1.2em;
   color: #555;
+  
 }
 
 .sections {
