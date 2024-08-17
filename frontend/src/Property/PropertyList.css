@@ -9,6 +9,7 @@
   .grid-container {
     grid-template-columns: 1fr 1fr;
   }
+  
 }
 
 @media (min-width: 900px) {
@@ -97,9 +98,31 @@ svg{
     
     height:90vh;
     background:#efeee5; 
-    width:20%;
+    width:40%;
     
-  } 
+position:absolute;
+    
+  }
+@media screen and (max-width:600px){
+.toggle-dashboard-btn {
+    top:150px;
+    }
+    .search-input{
+        padding:10px 20px;
+    }
+}        
+
+    .toggle-dashboard-btn {
+     
+      background-color: #007bff;
+      width:15%;
+      z-index:4;
+    
+    }
+    .filter-btn{
+        width:15%;
+    }
+  
   .profile-con,
   .book-con{
     margin:60px auto;

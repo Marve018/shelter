@@ -15,6 +15,7 @@ const PropertyList = () => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [showFilter, setShowFilter] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false);
 
   useEffect(() => {
     const getPropertiesList = async () => {
@@ -35,23 +36,32 @@ const PropertyList = () => {
     };
     getPropertiesList();
   }, [searchTerm, country, state, city, minPrice, maxPrice]);
-
+  
   return (
   <div>
         
     <div className='con-container'>
+        
+      {showDashboard && (
         <div className="user-dashboard">
-        <UserDashboard />
-      </div>
+          <UserDashboard />
+        </div>
+      )}
       
       
       <div className="search-container">
       {/* <h1>Property Listings</h1> */}
         <div className="search-bar">
+        <button
+        className="toggle-dashboard-btn"
+        onClick={() => setShowDashboard(!showDashboard)}
+      >
+        {showDashboard ? 'profile' : 'profile'}
+      </button>
         {/* <div className='search-con'> */} 
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} className='search-input'/>
           <button onClick={() => setShowFilter(!showFilter)} className='filter-btn'>
-            {showFilter ? "Hide Filters" : "Show Filters"}
+            {showFilter ? "Filters" : "Filters"}
           </button>
           {/* </div> */}
         </div> 

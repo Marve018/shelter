@@ -26,9 +26,9 @@ const LandingPage = () => {
       <header className="header">
         <div className="header-content">
           <img src={`${process.env.PUBLIC_URL}/Images/waving-hand.gif`} alt="Shelter Logo" className="header-img" />
-        <div>
+        <div className="he">
         <h1>Welcome to Shelter</h1>
-        <p>Discover Your Dream Home</p>
+        <p className='pe'>Discover Your Dream Home</p>
         </div>
         </div>
       </header>
