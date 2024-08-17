@@ -44,7 +44,7 @@ body {
   flex-direction: column;
   align-items: center;
   box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);
-  width: 40%;
+  min-width: 50%;
 }
 
 .form--input {
@@ -56,7 +56,12 @@ body {
   padding: 5px;
   font-family: "Inter", sans-serif;
 }
-
+@media screen and (max-width: 600px) {
+    .form-img1,
+    .form-img2{
+        display: none;
+    }
+}
 .form--submit {
   width: 50%;
   padding: 10px;
