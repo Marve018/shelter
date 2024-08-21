@@ -93,16 +93,7 @@ svg{
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
   }
-  .user-dashboard {
-    
-    
-    height:90vh;
-    background:#efeee5; 
-    width:40%;
-    
-position:absolute;
-    
-  }
+ 
 @media screen and (max-width:600px){
 .toggle-dashboard-btn {
     top:150px;
@@ -110,30 +101,22 @@ position:absolute;
     .search-input{
         padding:10px 20px;
     }
+    
 }        
 
     .toggle-dashboard-btn {
      
-      background-color: #007bff;
-      width:15%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width:50px;
       z-index:4;
+      height: 50px;
     
     }
     .filter-btn{
         width:15%;
     }
   
-  .profile-con,
-  .book-con{
-    margin:60px auto;
-    width:90%; 
-    border:1px solid #ccc;
-    height:200px;
-  }
-  .profile-con h2,
-  .book-con h2{
-    padding-top:20px;
-  }
+  
 .book-prop input{
      margin-top:10px;
 }

@@ -5,6 +5,7 @@ import Filter from "./filter";
 import PropertyCard from "./PropertyCard";
 import UserDashboard from "../components/userdashboard";
 import "./PropertyList.css";
+import myicon from "./user.svg";
 
 const PropertyList = () => {
   const [properties, setProperties] = useState([]);
@@ -41,23 +42,20 @@ const PropertyList = () => {
   <div>
         
     <div className='con-container'>
-        
+    <img src={myicon} alt="User Dashboard Icon" className="toggle-dashboard-btn" 
+                 onClick={() => setShowDashboard(!showDashboard)}/>
       {showDashboard && (
-        <div className="user-dashboard">
+        
           <UserDashboard />
-        </div>
+        
       )}
       
       
       <div className="search-container">
       {/* <h1>Property Listings</h1> */}
         <div className="search-bar">
-        <button
-        className="toggle-dashboard-btn"
-        onClick={() => setShowDashboard(!showDashboard)}
-      >
-        {showDashboard ? 'profile' : 'profile'}
-      </button>
+
+                
         {/* <div className='search-con'> */} 
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} className='search-input'/>
           <button onClick={() => setShowFilter(!showFilter)} className='filter-btn'>
