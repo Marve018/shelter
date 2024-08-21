@@ -1,11 +1,13 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: "process.env.REACT_APP_API_URL || http://localhost:5000",
+    baseURL: process.env.REACT_APP_API_URL || "http://localhost:5000",
     headers: {
         "Content-type": "application/json",
     }
 });
+
+/*console.log("API URL:", process.env.REACT_APP_API_URL);*/
 
 axiosInstance.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
