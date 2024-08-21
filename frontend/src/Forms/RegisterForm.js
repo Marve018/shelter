@@ -58,7 +58,7 @@ export default function Register() {
             <img
               src={`${process.env.PUBLIC_URL}/Images/logo-img.jpeg`}
               alt="logo"
-              className="shelter-logo"
+              className="shelter-logo1"
             />
             <label className="form--label">Sign up</label>
             {error && <p style={{ color: "red" }}>{error}</p>}

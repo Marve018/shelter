@@ -50,7 +50,7 @@ const LoginForm = () => {
     <>
       {showLoginForm ? (
         <div className="form-container">
-          <img src={`${process.env.PUBLIC_URL}/Images/fun3.png`} alt="Shelter Logo" className="form-img1" />
+          <img src={`${process.env.PUBLIC_URL}/Images/fun3.png`} alt="Shelter Logo1" className="form-img1" />
 
           {error && <p style={{ color: "red" }}>{error}</p>}
           <form onSubmit={handleSubmit} className="form">
